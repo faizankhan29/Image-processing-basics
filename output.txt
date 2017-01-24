@@ -1,0 +1,186 @@
+key portions of real applications (e.g. digital  filtering 
+algorithms).  
+
+  Technology-specific benchmarks are devoted  to point 
+out  the  main  differences  of  devices  belonging  to  the 
+same 
+(e.g.  Programmable 
+Electronic  Performance  Cooperative  or  PREP 
+benchmarks [7]). 
+
+technological 
+
+family 
+
+Application  and  synthetic  benchmarks  tend  to  assess  the 
+behavior  of  a  processing  device  when  different  types  of 
+operations  are  carried  out.  Accordingly,  these  kinds  of 
+benchmarks are suitable to estimate the average performance 
+of  very  involved,  general-purpose  systems  (e.g.  personal 
+computers), but they are unable to provide significant results 
+when  single  devices  have  to  implement  a  specific  set  of 
+algorithms,  as  it  usually  occurs  in  most  digital  signal 
+processing  applications.  On  the  other  hand,  technology-
+specific  benchmarks  are  usually  so  specialized  not  to  be 
+useful  for cross-technology comparisons.  As a consequence, 
+only kernel benchmarks are suitable to estimate univocally the 
+performances of different digital signal processing solutions. 
+Generally, a well-designed kernel benchmark test has to be:  
+
+  representative:  the  performance  result  should  be 
+summarized by a single number, usually referred to as 
+index of performance; 
+
+  reliable:  the  larger  the  index  of  performance  is,  the 
+
+faster the device under test (DUT) has to be; 
+
+  reproducible: 
+
+running 
+
+the  same 
+benchmark program on a given device under the same 
+conditions,  performance  results  should  not  change 
+considerably (except for uncertainty contributions); 
+
+several 
+
+times 
+
+  portable:  the  benchmark  has  to  be  independent  of  a 
+
+particular technology or architecture.  
+
+Besides  these  basic  properties,  a  kernel  benchmark  test 
+
+should also be: 
+
+  meaningful,  because  it  is  pointless  to  measure  an 
+
+uninteresting or rarely used feature; 
+linear:  any  index  should  be  proportional  to  real 
+performance; 
+
+  easy  to  use  so  that  it  can  be  used  frequently  and 
+
+ 
+
+correctly; 
+
+  vendor  independent,  i.e.  independent  as  much  as 
+possible  of  the  influence  of  external  subjects  which 
+may  be  interested  in  benchmarking  results  (e.g.  for 
+marketing purposes).  
+
+Some published results suggest that performance indexes 
+referring 
+to  digital  signal  processing  devices  can  be 
+effectively  measured  by  means  of  basic  algorithms  such  as 
+numeric  filtering,  FFT,  matrix  calculations  or  operations  on 
+bit  streams  [3,  4].  Among  them,  FFT  algorithms  are  most 
+valuable  benchmarks  because  they  own  all  the  properties 
+mentioned above. In fact, FFT benchmarking is: 
+
+  representative because several numerical indexes can 
+
+be calculated from FFT processing times; 
+
+  reliable  as  processing  time  does  not  depend  on  the 
+
+kind of input data; 
+
+ 
+
+  reproducible because execution time associated with 
+a given device depends only on the algorithm chosen 
+and on the clock frequency [5]; 
+
+  portable: FFT is basically a mathematical operation;  
+  meaningful  because  FFT  is  widely  used  in  many 
+
+digital signal processing applications; 
+linear: doubling the performance  means  halving the 
+execution time (or doubling data rate as explained in 
+next section); 
+
+  easy to use because, once FFT is implemented, only 
+transformation times need to be measured regardless 
+of input values; 
+
+  vendor  independent  as  standard  FFT  algorithms  are 
+
+not proprietary. 
+
+Besides  these  features,  plenty  of  documentation  is 
+available about different FFT implementations both in terms 
+of design choices and performance analyses. Hence, using a 
+given FFT algorithm as a kernel benchmark not only eases 
+the  comparison  between  devices  belonging  to  different 
+technologies, but allows also verifying the truthfulness of the 
+performance claimed by device manufacturers.  
+
+3. PERFORMANCE METRICS 
+
+ 
+
+ 
+
+Basically, 
+
+the  performance  of  any  digital  signal 
+processing application can be measured in terms of data rate 
+(DR), which is referred to as: 
+N
+ 
+
+[samples/s],    
+
+(1) 
+
+DR =
+
+   
+
+ 
+
+ 
+
+ 
+
+ 
+
+t
+
+proc
+
+where N is the amount of processed samples and tproc is the 
+processing time (e.g. the time to compute an FFT algorithm 
+on N=1024 complex samples). Notice that this parameter is 
+reliable because it is inversely proportional to the processing 
+time,  so  that  its  value  grows  linearly  with  performance,  as 
+expected  intuitively.  An  equivalent  index  to  express  the 
+processing  capabilities  of  a  given  digital  signal  processing 
+device  is  the  so-called  Real-Time  Bandwidth  (RTBW)  that 
+represents the maximum bandwidth with which an effective 
+analog  input  signal  can  be  processed  in  real-time,  without 
+loss of information. According to the Nyquist theorem [4], 
+RTBW is numerically equal to half of DR, provided that tproc 
+is the effective FFT processing time, i.e. it is not affected by 
+bus  overhead  or  latencies  associated  with  external  memory 
+operations. Under these assumptions, once FFT algorithm has 
+been chosen, the estimated RTBW value depends only on the 
+characteristics of the DUT, such as the clock  frequency and 
+the  operation  execution 
+if  FFT 
+computation time is slowed down by poor bus performance or 
+by other system bottlenecks, the RTBW value provided by (1) 
+could be appreciably overestimated. 
+
+speed.  Conversely, 
+
+In addition to RBTW, another valuable parameter to assess 
+the  performance  of  a  digital  signal  processing  device  is  the 
+Architectural Efficiency (AE), which is referred to as: 
+
+
